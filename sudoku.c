@@ -1817,7 +1817,7 @@ clear_status (void)
     have_status = 0;
 }
 
-/* Show meaasge in the status line for 2 seconds */
+/* Show meassge in the status line for 2 seconds */
 static
 void
 status_message (const char * txt)
@@ -1828,7 +1828,7 @@ status_message (const char * txt)
     clear_status();
 }
 
-/* Beeep and show meaasge in the status line for 2 seconds */
+/* Beep and show meassge in the status line for 2 seconds */
 static
 void
 beep_status_message (const char * txt)
@@ -2368,8 +2368,8 @@ getkey (void)
  */
 #if !defined (PATH_MAX)
 /* If it is not defined by the operating system, we can safely define it,
- * since the code below has no strong dependendence on the current working
- * directory, for which it is soleyly used. */
+ * since the code below has no strong dependence on the current working
+ * directory, for which it is solely used. */
 #define PATH_MAX 1024
 #endif
 
@@ -2581,35 +2581,35 @@ el_show_actual_char (edit_t *  ep)
     }
 }
 
-/* Highlight the actual character in overwite mode.
+/* Highlight the actual character in overwrite mode.
  * The ep pointer must point to a valid memory location.
  */
 static
 void
-el_highlight_in_overwite_mode (edit_t *    ep)
+el_highlight_in_overwrite_mode (edit_t *    ep)
 {
     if (!ep->ins_mode) {
-        /* Overwrite mode, higliht the character at the current position. */
+        /* Overwrite mode, highlight the character at the current position. */
         attron(A_BOLD);
         el_show_actual_char(ep);
         attroff(A_BOLD);
     }
 }
 
-/* Remove the higliht at the current position in overwite mode.
+/* Remove the highlight at the current position in overwrite mode.
  * The ep pointer must point to a valid memory location.
  */
 static
 void
-el_remove_highlight_in_overwite_mode (edit_t *    ep)
+el_remove_highlight_in_overwrite_mode (edit_t *    ep)
 {
     if (!ep->ins_mode) {
-        /* Overwrite mode, remove the higliht at the current position. */
+        /* Overwrite mode, remove the highlight at the current position. */
         el_show_actual_char(ep);
     }
 }
 
-/* Show the actual character and highlight in overwite mode.
+/* Show the actual character and highlight in overwrite mode.
  * The ep pointer must point to a valid memory location.
  */
 static
@@ -2621,7 +2621,7 @@ el_show_actual_char_with_highlight (edit_t *    ep)
         el_show_actual_char(ep);
     } else {
         /* Overwrite mode */
-        el_highlight_in_overwite_mode(ep);
+        el_highlight_in_overwrite_mode(ep);
     }
 }
 
@@ -2697,7 +2697,7 @@ el_process_delete_ch_at_current_position (edit_t *    ep)
                 }
             }
             /* Higliht the char in overwrite mode at the current position */
-            el_highlight_in_overwite_mode(ep);
+            el_highlight_in_overwrite_mode(ep);
         }
         ep->eb[ep->ecn] = '\0';
         if (ep->x_mv > ep->ecn - ep->m_1) {
@@ -2720,9 +2720,9 @@ el_process_move_cursor_left_or_right (edit_t *    ep)
 {
     if (ep->m_0 < ep->ecp && VKEY_LEFT == ep->ch ||
         ep->ecp < ep->ecn && VKEY_RIGHT == ep->ch) {
-        /* Remove the higliht at the previous position if the removal is needed. */
+        /* Remove the highlight at the previous position if the removal is needed. */
         int first_invisible = ep->m_1 + ep->x_mv;
-        el_remove_highlight_in_overwite_mode(ep);
+        el_remove_highlight_in_overwrite_mode(ep);
         ep->ecp += (VKEY_RIGHT == ep->ch) - (VKEY_LEFT == ep->ch);
         if (ep->ecp < ep->m_1
             || ep->ecp > first_invisible
@@ -2740,7 +2740,7 @@ el_process_move_cursor_left_or_right (edit_t *    ep)
             }
         }
         /* Higliht the char in overwrite mode at the current position */
-        el_highlight_in_overwite_mode(ep);
+        el_highlight_in_overwrite_mode(ep);
         /* Make sure that the proper markers displayed. */
         el_adjust_markers (ep);
     } else {
@@ -2814,7 +2814,7 @@ el_process_destructive_backspace (edit_t *   ep)
             }
 
             /* Higliht the char in overwrite mode at the current position */
-            el_highlight_in_overwite_mode(ep);
+            el_highlight_in_overwrite_mode(ep);
         }
 
         ep->eb[ep->ecn] = '\0';
@@ -2886,7 +2886,7 @@ el_put_visible_char_in_the_middle (edit_t *    ep)
     }
 
     /* Higliht the char in overwrite mode at the current position */
-    el_highlight_in_overwite_mode(ep);
+    el_highlight_in_overwrite_mode(ep);
     /* Make sure that the proper markers displayed. */
     el_adjust_markers (ep);
 }
@@ -2941,7 +2941,7 @@ el_process_visible_char (edit_t *    ep)
             beep();
         }
     } else {
-        /* The input buffer is full, no mre character can be stored.
+        /* The input buffer is full, no more character can be stored.
          * This might happen.
          */
         beep();
@@ -3117,7 +3117,7 @@ get_string (char *                  buffer,
         /* Reset screen */
         clear_status();
         for (line = FILE_LINE; line <= LAST_LINE; ++line) {
-            /* Clear the filename and below from the sreen. */
+            /* Clear the filename and below from the seen. */
             move(line, LEFT_LEFT);
             wclrtoeol(stdscr);
         }
@@ -3323,7 +3323,7 @@ write_template (void)
                 status_message("Template file successfully created!");
             } else {
                 beep_status_message("Template file exists"
-                                    " or write error occured!");
+                                    " or write error occurred!");
             }
         } else {
             beep_status_message("No valid file name found!");
@@ -4039,7 +4039,7 @@ main (int argc, char **argv)
         /* -g0 generates many boards */
         if (0 == num_generate) {
             /* changed from --num_generate, to make it
-             * independend from the actual size of int
+             * independent from the actual size of int
              * 10000 seems to qualify for being 'many'
              */
             num_generate = 10000;
