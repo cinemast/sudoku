@@ -25,7 +25,7 @@ libncurses5-dev.
 
 Other possible way of getting it is to install the CDK.
 CDK stands for "Curses Development Kit", and CDK sits
-on top of the curseslibrary. This package contains the
+on top of the curses library. This package contains the
 header files and development libraries for the CDK library.
 (Home page: http://invisible-island.net/cdk/)
 
