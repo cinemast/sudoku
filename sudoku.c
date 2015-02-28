@@ -3499,7 +3499,7 @@ signals (void)
     sigaction(SIGKILL, &sighandler, 0);
 #endif
 
-    /* Reenable signal processing */
+    /* Re-enable signal processing */
     if (0 == tcgetattr(0, &tp)) {
         tp.c_lflag |= ISIG;
         tcsetattr(0, TCSANOW, &tp);
