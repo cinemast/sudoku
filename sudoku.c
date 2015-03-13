@@ -41,6 +41,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <curses.h>
+#include <stddef.h>
 
 /* Default file locations */
 #if !defined (TEMPLATE)
@@ -2718,15 +2719,15 @@ static
 void
 el_process_move_cursor_left_or_right (edit_t *    ep)
 {
-    if (ep->m_0 < ep->ecp && VKEY_LEFT == ep->ch ||
-        ep->ecp < ep->ecn && VKEY_RIGHT == ep->ch) {
+    if ((ep->m_0 < ep->ecp && VKEY_LEFT == ep->ch) ||
+        (ep->ecp < ep->ecn && VKEY_RIGHT == ep->ch)) {
         /* Remove the highlight at the previous position if the removal is needed. */
         int first_invisible = ep->m_1 + ep->x_mv;
         el_remove_highlight_in_overwrite_mode(ep);
         ep->ecp += (VKEY_RIGHT == ep->ch) - (VKEY_LEFT == ep->ch);
         if (ep->ecp < ep->m_1
             || ep->ecp > first_invisible
-            || ep->ecp == first_invisible && ep->ecp != ep->ecn) {
+            || (ep->ecp == first_invisible && ep->ecp != ep->ecn)) {
             /* scroll right or left as needed */
             ep->m_1 += (ep->ecp >= first_invisible) - (ep->ecp < ep->m_1);
             first_invisible = ep->m_1 + ep->x_mv;
@@ -3636,7 +3637,7 @@ evaluate_options (int argc, char **argv)
                     switch (*arg) {
                         case 'c':
                             /* No need for strdup, since the underlying
-                            /* memory in the environment will not go away. */
+                             * memory in the environment will not go away. */
                             requested_class = &arg[1];
                             if( 0 != strcmp(requested_class, CN(VERY_EASY)) &&
                                 0 != strcmp(requested_class, CN(EASY))      &&
