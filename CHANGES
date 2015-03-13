@@ -1,6 +1,8 @@
 1.0.5
-	- extended manpage (hinting)
-	- fixing cppcheck warnings
+	- extended manpage (hinting).
+	- fixing cppcheck warnings.
+	- added DESTDIR/PREFIX capabilities to makefile.
+	- create all required directories in make install.
 1.0.4
 	- fixed typos and spelling mistakes
 1.0.3
