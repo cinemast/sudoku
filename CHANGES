@@ -1,3 +1,6 @@
+1.0.5
+	- extended manpage (hinting)
+	- fixing cppcheck warnings
 1.0.4
 	- fixed typos and spelling mistakes
 1.0.3
